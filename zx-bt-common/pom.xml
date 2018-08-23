@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>zx-bt-common</artifactId>
-    <version>1.0</version>
+    <version>${parent.version}</version>
     <packaging>jar</packaging>
 
     <parent>
@@ -106,5 +106,16 @@
 
     <build>
         <finalName>zx-bt-common</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 </project>

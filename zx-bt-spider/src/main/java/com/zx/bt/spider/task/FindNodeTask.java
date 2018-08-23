@@ -43,7 +43,7 @@ public class FindNodeTask implements Pauseable {
         this.config = config;
         this.nodeIds = config.getMain().getNodeIds();
         this.sender = sender;
-        this.queue = new LinkedBlockingDeque<>(config.getPerformance().getFindNodeTaskMaxQueueLength());
+        this.queue = new LinkedBlockingDeque<InetSocketAddress>(config.getPerformance().getFindNodeTaskMaxQueueLength());
         this.lock = new ReentrantLock();
         this.condition = this.lock.newCondition();
     }

@@ -160,11 +160,11 @@ public class MetadataService {
                 .get();
         if (!response.status().equals(RestStatus.OK))
             throw new BTException(LOG + "[preListFindMetadata]预分页查询失败,状态码错误,当前状态码:" + response.status());
-        List<String> infoHashs = new LinkedList<>();
+        List<String> infoHashs = new LinkedList<String>();
         for (SearchHit item : response.getHits()) {
             infoHashs.add((String) item.field(field).getValues().get(0));
         }
-        return new ScrollResult<>(infoHashs, response.getScrollId(), response.getHits().totalHits);
+        return new ScrollResult<String>(infoHashs, response.getScrollId(), response.getHits().totalHits);
     }
 
     /**
@@ -184,11 +184,11 @@ public class MetadataService {
                 .get();
         if (!response.status().equals(RestStatus.OK))
             throw new BTException(LOG + "[preListFindMetadata]预分页查询失败,状态码错误,当前状态码:" + response.status());
-        List<Metadata> results = new LinkedList<>();
+        List<Metadata> results = new LinkedList<Metadata>();
         for (SearchHit item : response.getHits()) {
             results.add(objectMapper.readValue(item.getSourceAsString(), Metadata.class).set_id(item.getId()));
         }
-        return new ScrollResult<>(results, response.getScrollId(), response.getHits().totalHits);
+        return new ScrollResult<Metadata>(results, response.getScrollId(), response.getHits().totalHits);
     }
 
     /**
@@ -210,7 +210,7 @@ public class MetadataService {
         String field = "infoHash";
         SearchResponse response = transportClient.prepareSearchScroll(scrollId)
                 .setScroll(TimeValue.timeValueSeconds(timeoutSecond)).get();
-        List<String> infoHashs = new LinkedList<>();
+        List<String> infoHashs = new LinkedList<String>();
         for (SearchHit item : response.getHits()) {
             infoHashs.add((String) item.field(field).getValues().get(0));
         }
@@ -226,11 +226,11 @@ public class MetadataService {
     public ListFindResult<Metadata> listFindMetadata(String scrollId, int timeoutSecond) {
         SearchResponse response = transportClient.prepareSearchScroll(scrollId)
                 .setScroll(TimeValue.timeValueSeconds(timeoutSecond)).get();
-        List<Metadata> results = new LinkedList<>();
+        List<Metadata> results = new LinkedList<Metadata>();
         for (SearchHit item : response.getHits()) {
             results.add(objectMapper.readValue(item.getSourceAsString(), Metadata.class).set_id(item.getId()));
         }
-        return new ListFindResult<>(response.getScrollId(),results);
+        return new ListFindResult<Metadata>(response.getScrollId(),results);
     }
 
     /**
@@ -325,13 +325,13 @@ public class MetadataService {
         //防止总页数为0
         totalPage = totalPage == 0 ? 1 : totalPage;
         //返回的list
-        List<MetadataVO> metadatas = new LinkedList<>();
+        List<MetadataVO> metadatas = new LinkedList<MetadataVO>();
         Metadata metadata;
         for (SearchHit item : hits) {
             metadata = objectMapper.readValue(item.getSourceAsString(), Metadata.class).set_id(item.getId());
             metadatas.add(new MetadataVO(metadata,LengthUnitEnum.convert(metadata.getLength())).clearNotMustProperty());
         }
-        result = new PageVO<>(pageNo, pageSize, totalElement, totalPage, metadatas, keyword);
+        result = new PageVO<MetadataVO>(pageNo, pageSize, totalElement, totalPage, metadatas, keyword);
         if(cacheable)
             listCache.put(keyword,result);
         return result;

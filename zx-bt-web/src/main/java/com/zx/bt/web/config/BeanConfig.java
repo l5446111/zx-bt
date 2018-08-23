@@ -72,7 +72,7 @@ public class BeanConfig {
      */
     @Bean
     public CommonCache<String> hotCache(Config config) {
-        return new CommonCache<>(
+        return new CommonCache<String>(
                 CacheMethodEnum.AFTER_WRITE,
                 config.getService().getHotCacheExpireSecond(),
                 config.getService().getHotCacheMaxSize());
@@ -85,7 +85,7 @@ public class BeanConfig {
      */
     @Bean
     public CommonCache<PageVO<MetadataVO>> listCache(Config config) {
-        return new CommonCache<>(
+        return new CommonCache<PageVO<MetadataVO>>(
                 CacheMethodEnum.AFTER_WRITE,
                 config.getService().getMetadataVOCacheExpireSecond(),
                 config.getService().getMetadataVOCacheMaxSize()
@@ -99,7 +99,7 @@ public class BeanConfig {
      */
     @Bean
     public CommonCache<Connection> webSocketConnectionCache(Config config) {
-        return new CommonCache<>(
+        return new CommonCache<Connection>(
                 CacheMethodEnum.AFTER_ACCESS,
                 config.getService().getWebSocketConnectExpireSecond(),
                 config.getService().getWebSocketMaxConnectNum());

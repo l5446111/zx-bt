@@ -5,16 +5,23 @@
 
     <groupId>com.zx.bt</groupId>
     <artifactId>zx-bt-parent</artifactId>
-    <version>${zx-bt.version}</version>
-
+    <version>1.0</version>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.10.RELEASE</version>
+    </parent>
     <packaging>pom</packaging>
 
     <name>zx-bt</name>
     <description>BT父模块</description>
 
-
-
-
+    <modules>
+        <module>zx-bt-common</module>
+        <module>zx-bt-spider</module>
+        <module>zx-bt-top</module>
+        <module>zx-bt-web</module>
+    </modules>
 
     <properties>
         <es.set.netty.runtime.available.processors>false</es.set.netty.runtime.available.processors>
@@ -40,113 +47,81 @@
 
     <dependencyManagement>
         <dependencies>
-            <!--<dependency>-->
-                <!--<groupId>org.springframework.boot</groupId>-->
-                <!--<artifactId>spring-boot-dependencies</artifactId>-->
-                <!--<version>${spring-boot.version}</version>-->
-                <!--<type>pom</type>-->
-                <!--<scope>import</scope>-->
-            <!--</dependency>-->
             <dependency>
                 <groupId>com.zx.bt</groupId>
                 <artifactId>zx-bt-top</artifactId>
                 <version>${zx-bt.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
             </dependency>
-
-
             <dependency>
                 <groupId>com.zx.bt</groupId>
                 <artifactId>zx-bt-common</artifactId>
                 <version>${zx-bt.version}</version>
             </dependency>
-
-
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.version}</version>
             </dependency>
-
-
-
             <dependency>
                 <groupId>io.netty</groupId>
                 <artifactId>netty-all</artifactId>
                 <version>${netty.version}</version>
             </dependency>
-
-
-
             <dependency>
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
                 <version>${commons-io.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang3.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>commons-codec</groupId>
                 <artifactId>commons-codec</artifactId>
                 <version>${commons-codec.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>commons-beanutils</groupId>
                 <artifactId>commons-beanutils</artifactId>
                 <version>${commons-beanutils.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-text</artifactId>
                 <version>${commons-text.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpclient</artifactId>
                 <version>${httpclient.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.jsoup</groupId>
                 <artifactId>jsoup</artifactId>
                 <version>${jsoup.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.elasticsearch.client</groupId>
                 <artifactId>transport</artifactId>
                 <version>${elasticsearch.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.elasticsearch</groupId>
                 <artifactId>elasticsearch</artifactId>
                 <version>${elasticsearch.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>net.sourceforge.nekohtml</groupId>
                 <artifactId>nekohtml</artifactId>
                 <version>${nekohtml.version}</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
-
-
 </project>

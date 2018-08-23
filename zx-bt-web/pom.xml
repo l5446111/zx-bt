@@ -11,8 +11,8 @@
 	<description>磁力搜索网站</description>
 
 	<parent>
-		<groupId>com.zx.bt</groupId>
 		<artifactId>zx-bt-parent</artifactId>
+		<groupId>com.zx.bt</groupId>
 		<version>1.0</version>
 	</parent>
 
@@ -46,7 +46,6 @@
 			<artifactId>ipdatabase</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
-
 	</dependencies>
 
 
@@ -56,16 +55,15 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<mainClass>com.zx.bt.web.WebApplication</mainClass>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>UTF-8</encoding>
 				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>repackage</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 		<finalName>zx-bt-web</finalName>

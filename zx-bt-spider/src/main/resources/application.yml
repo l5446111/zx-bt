@@ -118,7 +118,7 @@ zx-bt:
     socket-timeout: 1500
   es:
     cluster-name: zx
-    ip: 106.14.7.29
+    ip: 182.61.10.245
 #    ip: 172.19.87.203
     port: 9300
   performance:
@@ -171,11 +171,11 @@ zx-bt:
 
   main:
     # 是否开启主任务
-    start: false
+    start: true
     # 是否为主节点
-    master: true
+    master: false
     # 主节点url
-    masterUrl: http://101.132.42.102:8080/filter
+    masterUrl: http://1106.12.98.48:8080/filter
     # 当前开启的解析器类型
     infoHashParserTypes:
     # 配置版本标识
@@ -214,7 +214,7 @@ zx-bt:
       - 44472
       - 44473
       - 44474
-    ip: 182.61.10.245
+    ip: 106.12.98.48
     init-addresses:
       # 以下是比较有名的节点.其中utorrent是比较好的.剩余两个有点垃圾
       - router.utorrent.com:6881
