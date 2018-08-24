@@ -21,6 +21,7 @@
         <module>zx-bt-spider</module>
         <module>zx-bt-top</module>
         <module>zx-bt-web</module>
+        <module>zx-bt-hashspider</module>
     </modules>
 
     <properties>

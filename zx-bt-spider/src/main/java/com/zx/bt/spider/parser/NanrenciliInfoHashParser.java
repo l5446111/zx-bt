@@ -59,7 +59,7 @@ public class NanrenciliInfoHashParser extends AbstractInfoHashParser {
     public static void main(String[] args) throws Exception {
         NanrenciliInfoHashParser nanrenciliInfoHashParser = new NanrenciliInfoHashParser();
         nanrenciliInfoHashParser.init(new HttpClientUtil(null), new ObjectMapper());
-        Metadata a = nanrenciliInfoHashParser.parse("c51163433f69ff8a248f640105b481e97179236f");
+        Metadata a = nanrenciliInfoHashParser.parse("332c6408a724514f2d2e503dbfa538e29351d615");
         System.out.println(a);
     }
 
