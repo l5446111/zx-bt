@@ -72,11 +72,12 @@ public class FindNodeTask implements Pauseable {
             new Thread(()->{
                 int j;
                 while (true) {
+
                     try {
                         //轮询使用每个端口向外发送请求
                         for (j = 0; j < size; j++) {
                             sender.findNode(queue.take(),nodeIds.get(j), BTUtil.generateNodeIdString(),j);
-                            pause(lock, condition, pauseTime, milliseconds);
+                            pause(lock, condition, 100, milliseconds);
                         }
                     } catch (Exception e) {
                         log.error("[FindNodeTask]异常.error:{}",e.getMessage());

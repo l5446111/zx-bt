@@ -1,12 +1,5 @@
 server:
   port: 8080
-endpoints:
-  shutdown:
-    enabled: true
-    sensitive: false
-management:
-  security:
-    enabled: false
 # Redis数据库索引（默认为0）
 spring:
   redis:
@@ -45,16 +38,16 @@ zx-bt:
     port: 9300
   performance:
     # find_node任务,线程数
-    find-node-task-thread-num: 10
+    find-node-task-thread-num: 30
     # find_node任务, 发送间隔. 毫秒
     find-node-task-interval-ms: 0
     # find_node任务,最大队列长度
-    findNodeTaskMaxQueueLength: 5000
+    findNodeTaskMaxQueueLength: 10000
     # UDP服务器主任务线程数,单个端口的数量
-    udp-server-main-thread-num: 2
+    udp-server-main-thread-num: 10
 
     # fetchMetadataByPeerTask,最大线程数
-    fetch-metadata-by-peer-task-tread-num: 3
+    fetch-metadata-by-peer-task-tread-num: 5
     # fetchMetadataByPeerTask,连接成功后等待peer超时时间
     fetch-metadata-by-peer-task-read-timeout-second: 10
 
@@ -64,9 +57,9 @@ zx-bt:
     fetch-metadata-by-other-web-task-thread-num: 10
 
     # get_peers任务,最多同时进行的任务数
-    get-peers-task-concurrent-num: 2
+    get-peers-task-concurrent-num: 5
     # get_peers任务, info_hash等待队列长度
-    get-peers-task-info-hash-queue-len: 256
+    get-peers-task-info-hash-queue-len: 512
     # get_peers任务过期时间
     get-peers-task-expire-second: 200
     # get_peers请求, 最小发送间隔
@@ -82,7 +75,7 @@ zx-bt:
     info-hash-filter-fpp: 0.0001
 
     # 连接peer任务TCP线程数
-    tcp-client-thread-num: 3
+    tcp-client-thread-num: 10
     # 连接peer任务TCP连接超时时间(ms)
     tcp-connect-timeout-ms: 2000
 

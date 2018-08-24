@@ -1,6 +1,5 @@
 package com.zx.bt.hashspider.service;
 
-import com.zx.bt.common.entity.InfoHash;
 import com.zx.bt.common.util.SleepUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +63,8 @@ public class QueueService {
                     continue;
                 }
                 listOperations.leftPush("SYSTEM_BT_DHT_QUEUE", obj);
+                Long systemBtDhtQueueCount = listOperations.size("SYSTEM_BT_DHT_QUEUE");
+                log.info("queue size :{}",systemBtDhtQueueCount);
                 contineExceptionCount = 0;
             } catch (Exception e) {
                 if (contineExceptionCount < 3600) {
