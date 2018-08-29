@@ -27,8 +27,6 @@ public class NodeId implements Serializable {
     @Column(name = "node_id", length = 40)
     private String nodeId;
 
-    @OneToMany(mappedBy = "nodeId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<NodeIp> nodeIps;
     @Column(name = "last_contract_date")
     private Date lastContractDate;
     @Column(name = "contract_count")

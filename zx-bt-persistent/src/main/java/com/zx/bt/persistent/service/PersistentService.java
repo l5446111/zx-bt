@@ -59,7 +59,7 @@ public class PersistentService {
             log.info("{}nodeId:{}", nodeId.getId() == null ? "新增" : "更新", nodeId);
 
             nodeIdRepository.save(nodeId);
-            NodeIp nodeIp = nodeIpRepository.findByNodeIdAndIpAndPort(nodeId, node.getIp(), node.getPort());
+            NodeIp nodeIp = nodeIpRepository.findByNodeIdAndIpAndPort(nodeId.getId(), node.getIp(), node.getPort());
             if (nodeIp == null) {
                 nodeIp = new NodeIp(node);
             } else {
@@ -67,9 +67,7 @@ public class PersistentService {
                 nodeIp.setLastContractDate(new Date());
                 nodeIp.setLastUpdateTime(new Date());
             }
-            NodeId tmpNodeId = new NodeId();
-            tmpNodeId.setId(nodeId.getId());
-            nodeIp.setNodeId(tmpNodeId);
+            nodeIp.setNodeId(nodeId.getId());
             log.info("{}nodeIp:{}", nodeIp.getId() == null ? "新增" : "更新", nodeIp);
             nodeIpRepository.save(nodeIp);
         } catch (Exception e) {
@@ -99,7 +97,7 @@ public class PersistentService {
             String[] peerAddressArr = peerAddress.split(":");
             String ip = peerAddressArr[0];
             Integer port = Integer.valueOf(peerAddressArr[1]);
-            InfoHashIp infoHashIp = infoHashIpRespository.findByInfoHashIdAndIpAndPort(infoHashId, ip, port);
+            InfoHashIp infoHashIp = infoHashIpRespository.findByInfoHashIdAndIpAndPort(infoHashId.getId(), ip, port);
             if (infoHashIp == null) {
                 infoHashIp = new InfoHashIp(infoHash);
             } else {
@@ -107,9 +105,7 @@ public class PersistentService {
                 infoHashIp.setLastContractDate(new Date());
                 infoHashIp.setLastUpdateTime(new Date());
             }
-            InfoHashId tmpId = new InfoHashId();
-            tmpId.setId(infoHashId.getId());
-            infoHashIp.setInfoHashId(tmpId);
+            infoHashIp.setInfoHashId(infoHashId.getId());
             log.info("{}infoHashIp:{}", infoHashIp.getId() == null ? "新增" : "更新", infoHashIp);
             infoHashIpRespository.save(infoHashIp);
         } catch (Exception e) {

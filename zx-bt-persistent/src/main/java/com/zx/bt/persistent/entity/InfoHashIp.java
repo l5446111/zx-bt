@@ -47,12 +47,11 @@ public class InfoHashIp implements Serializable {
     private Date createTime;
     @Column(name = "last_update_time")
     private Date lastUpdateTime;
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
-    @JoinColumn(name = "inf_hash_id")
-    private InfoHashId infoHashId;
+    @Column(name = "info_hash_id")
+    private Long infoHashId;
 
     public InfoHashIp(InfoHash infoHash) {
-        String peerAddress = infoHash.getPeerAddress().replaceAll(";","");
+        String peerAddress = infoHash.getPeerAddress().replaceAll(";", "");
         String[] peerAddressArr = peerAddress.split(":");
         String ip = peerAddressArr[0];
         Integer port = Integer.valueOf(peerAddressArr[1]);

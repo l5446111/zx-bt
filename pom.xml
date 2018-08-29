@@ -22,6 +22,7 @@
         <module>zx-bt-top</module>
         <module>zx-bt-web</module>
         <module>zx-bt-hashspider</module>
+        <module>zx-bt-persistent</module>
     </modules>
 
     <properties>

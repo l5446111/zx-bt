@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface NodeIpRepository extends JpaRepository<NodeIp, Long> {
-    NodeIp findByNodeIdAndIpAndPort(NodeId nodeId, String ip, Integer port);
+    NodeIp findByNodeIdAndIpAndPort(Long nodeId, String ip, Integer port);
 }

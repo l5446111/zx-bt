@@ -24,9 +24,8 @@ public class NodeIp implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, optional = false)
-    @JoinColumn(name = "node_id")
-    private NodeId nodeId;
+    @Column(name = "node_id")
+    private Long nodeId;
     @Column(name = "ip", nullable = false, length = 15)
     private String ip;
     @Column(name = "port", nullable = false)

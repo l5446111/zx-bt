@@ -50,8 +50,6 @@ public class InfoHashId implements Serializable {
     private Date createTime;
     @Column(name = "last_update_time")
     private Date lastUpdateTime;
-    @OneToMany(mappedBy = "infoHashId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<InfoHashIp> infoHashIps;
 
     public InfoHashId(InfoHash infoHash) {
         this.infoHash = infoHash.getInfoHash();

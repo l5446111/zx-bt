@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface InfoHashIpRespository extends JpaRepository<InfoHashIp, Long> {
-    InfoHashIp findByInfoHashIdAndIpAndPort(InfoHashId infoHashId, String ip, Integer port);
+    InfoHashIp findByInfoHashIdAndIpAndPort(Long infoHashId, String ip, Integer port);
 }
