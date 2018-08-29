@@ -7,7 +7,6 @@ import com.zx.bt.hashspider.entity.Node;
 import com.zx.bt.hashspider.enums.MethodEnum;
 import com.zx.bt.hashspider.enums.NodeRankEnum;
 import com.zx.bt.hashspider.enums.YEnum;
-import com.zx.bt.hashspider.repository.NodeRepository;
 import com.zx.bt.hashspider.service.QueueService;
 import com.zx.bt.hashspider.socekt.Sender;
 import com.zx.bt.hashspider.store.RoutingTable;
@@ -32,7 +31,6 @@ public class AnnouncePeerRequestUDPProcessor extends UDPProcessor {
     private static final String LOG = "[ANNOUNCE_PEER]";
 
     private final List<RoutingTable> routingTables;
-    private final NodeRepository nodeRepository;
     //private final GetPeersTask getPeersTask;
     private final Sender sender;
     //private final InfoHashService infoHashService;
@@ -41,10 +39,9 @@ public class AnnouncePeerRequestUDPProcessor extends UDPProcessor {
     private QueueService queueService;
 
 
-    public AnnouncePeerRequestUDPProcessor(List<RoutingTable> routingTables, NodeRepository nodeRepository, Sender sender, FindNodeTask findNodeTask
-                                           ) {
+    public AnnouncePeerRequestUDPProcessor(List<RoutingTable> routingTables, Sender sender, FindNodeTask findNodeTask
+    ) {
         this.routingTables = routingTables;
-        this.nodeRepository = nodeRepository;
         this.sender = sender;
         this.findNodeTask = findNodeTask;
     }
@@ -52,7 +49,7 @@ public class AnnouncePeerRequestUDPProcessor extends UDPProcessor {
     @Override
     boolean process1(ProcessObject processObject) {
         AnnouncePeer.RequestContent requestContent = new AnnouncePeer.RequestContent(processObject.getRawMap(), processObject.getSender().getPort());
-        log.info("{}收到消息.",LOG);
+        log.info("{}收到消息.", LOG);
         //入库
         queueService.pushInfoHash(new InfoHash(requestContent.getInfo_hash(), BTUtil.getIpBySender(processObject.getSender()) + ":" + requestContent.getPort() + ";"));
         //infoHashService.saveInfoHash(requestContent.getInfo_hash(), BTUtil.getIpBySender(processObject.getSender()) + ":" + requestContent.getPort() + ";");

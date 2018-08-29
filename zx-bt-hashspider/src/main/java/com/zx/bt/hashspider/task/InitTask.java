@@ -3,7 +3,6 @@ package com.zx.bt.hashspider.task;
 
 import com.zx.bt.hashspider.config.Config;
 import com.zx.bt.hashspider.entity.Node;
-import com.zx.bt.hashspider.repository.NodeRepository;
 import com.zx.bt.hashspider.socekt.Sender;
 import com.zx.bt.hashspider.socekt.UDPServer;
 import com.zx.bt.hashspider.util.BTUtil;
@@ -27,14 +26,12 @@ public class InitTask {
     private final Config config;
     private final Sender sender;
     private final UDPServer udpServer;
-    private final NodeRepository nodeRepository;
 
 
-    public InitTask(Config config, Sender sender,  UDPServer udpServer, NodeRepository nodeRepository) {
+    public InitTask(Config config, Sender sender, UDPServer udpServer) {
         this.config = config;
         this.sender = sender;
         this.udpServer = udpServer;
-        this.nodeRepository = nodeRepository;
     }
 
     /**
@@ -55,10 +52,11 @@ public class InitTask {
     private InetSocketAddress[] getInitAddresses() {
         // 从数据库中查询地址
         Integer initTaskSendNum = config.getMain().getInitTaskSendNum();
-        List<Node> nodeList = nodeRepository.findTopXNode(initTaskSendNum);
+        //List<Node> nodeList = nodeRepository.findTopXNode(initTaskSendNum);
+        List<Node> nodeList = null;
         //获取配置文件中的初始化地址
         InetSocketAddress[] initAddressArray = config.getMain().getInitAddressArray();
-        if(CollectionUtils.isNotEmpty(nodeList))
+        if (CollectionUtils.isNotEmpty(nodeList))
             initAddressArray = ArrayUtils.addAll(initAddressArray, nodeList.stream().map(Node::toAddress).toArray(InetSocketAddress[]::new));
         return initAddressArray;
     }
@@ -73,7 +71,7 @@ public class InitTask {
             String nodeId = nodeIds.get(i);
             //向每个地址发送请求
             for (InetSocketAddress address : initAddressArray) {
-                this.sender.findNode(address,nodeId, BTUtil.generateNodeIdString(),i);
+                this.sender.findNode(address, nodeId, BTUtil.generateNodeIdString(), i);
             }
         }
     }
